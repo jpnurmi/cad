@@ -99,9 +99,17 @@ module bottom(w, d, h)
 module front_wall(w, h)
 {
     color("blue") {
-        for (i = [0:7]) {
-            translate([i * 600, 0, 0]) cube([45, 90, h]);
+        difference() {
+            union() {
+                for (i = [0:7]) {
+                    translate([i * 600, 0, 0]) cube([45, 90, h]);
+                }
+            }
+            translate([3000-1, -1, -1]) cube([47, 92, 2045]);
         }
+        translate([3000 - 450 - 45/2, 0, 0]) cube([45, 90, 2000]);
+        translate([3000 + 450 + 45/2, 0, 0]) cube([45, 90, 2000]);
+        translate([2400 + 45, 0, 2000]) cube([1200 - 45, 90, 45]);
     }
     color("magenta") {
         translate([0, 0, h]) cube([w + 45, 90, 45]);
