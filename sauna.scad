@@ -122,10 +122,25 @@ module back_wall(w, h)
 
 module side_wall(w, fh, bh)
 {
-    color("red") {
-        for (i = [0:4]) {
-            h = fh - (fh - bh) / 4 * i;
-            translate([0, i * 600 + 90, 0]) cube([90, 45, h]);
+    translate([0, 90, 0]) {
+        color("red") {
+            difference() {
+                union() {
+                    for (i = [0:4]) {
+                        h = fh - (fh - bh) / 4 * i;
+                        translate([0, i * 600, 0]) cube([90, 45, h]);
+                    }
+                }
+                translate([-1, 1200-1, 1200-1]) cube([92, 47, 645]);
+            }
+            translate([0, 600 + 45, 0]) cube([90, 45, 1800]);
+            translate([0, 1800 - 45, 0]) cube([90, 45, 1800]);
+
+            translate([0, 600 + 90, 0]) cube([90, 45, 1200]);
+            translate([0, 1800 - 90, 0]) cube([90, 45, 1200]);
+
+            translate([0, 600 + 45, 1800]) cube([90, 1200 - 45, 45]);
+            translate([0, 600 + 90, 1200]) cube([90, 1200 - 135, 45]);
         }
     }
     color("magenta") {
